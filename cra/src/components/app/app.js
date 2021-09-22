@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './app.css';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
   state = {
     value: '',
   };
@@ -13,11 +17,17 @@ export default class App extends Component {
     return this.state.value.includes('реакт');
   };
 
+  onInputFocus = (evt) => {
+    evt.preventDefault();
+    this.inputRef.current.focus();
+  };
+
   render() {
     const {
       state: { value },
       onInputChange,
       checkInput,
+      onInputFocus,
     } = this;
 
     return (
@@ -28,8 +38,11 @@ export default class App extends Component {
           placeholder="Please, enter a text"
           value={value}
           onChange={onInputChange}
+          ref={this.inputRef}
         />
-        <button className="focus-button">Focus on input</button>
+        <button className="focus-button" onClick={onInputFocus}>
+          Focus on input
+        </button>
         <button
           type="submit"
           className="submit-button"
