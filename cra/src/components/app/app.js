@@ -1,14 +1,38 @@
 import React, { Component } from 'react';
 import './app.css';
 
+class ErrorButton extends Component {
+  render() {
+    console.log(this.state.foo.bar);
+    return <button> Error</button>;
+  }
+}
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
   }
+
   state = {
     value: '',
   };
+
+  componentDidMount() {
+    console.log('componentDidMount'); // после монтирования
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate'); //при изменении инпута
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount'); // если внести изменения в код, то при пересборке компонент размонтируется
+  }
+
+  componentDidCatch() {
+    console.log('componentDidCatch'); //при возникновении ошибки в методах жизненного цикла потомков
+  }
 
   onInputChange = (evt) => this.setState({ value: evt.target.value });
 
@@ -50,6 +74,7 @@ export default class App extends Component {
         >
           Submit
         </button>
+        {/* <ErrorButton /> */}
       </form>
     );
   }
