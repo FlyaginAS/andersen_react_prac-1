@@ -14,6 +14,31 @@
     <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.9.3/babel.js"></script>
-    <script type="text/babel"></script>
+    <script type="text/babel">
+      //создаем рутовый и вставляем на страницу
+      const body = document.querySelector('body');
+
+      const root = document.createElement('div');
+      root.id = 'root';
+
+      body.append(root);
+
+      // работает с  React
+      const itemContents = [
+        'Learn JS',
+        'Learn React',
+        'Get Job Offer',
+      ];
+
+      const items = itemContents.map((text) => (
+        <li key={text} className="item">
+          {text}
+        </li>
+      ));
+
+      const list = <ul className="todo-list">{items}</ul>;
+
+      ReactDOM.render(list, root);
+    </script>
   </body>
 </html>
