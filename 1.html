@@ -15,5 +15,36 @@
     <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.9.3/babel.js"></script>
     <script type="text/babel"></script>
+    <script>
+      const body = document.querySelector('body');
+
+      const root = document.createElement('div');
+      root.id = 'root';
+
+      const todoList = document.createElement('ul');
+      todoList.classList.add('todo-list');
+
+      function createItem(text) {
+        const item = document.createElement('li');
+        item.classList.add('item');
+        item.textContent = text;
+        return item;
+      }
+
+      const itemContents = [
+        'Learn JS',
+        'Learn React',
+        'Get Job Offer',
+      ];
+
+      const items = itemContents.map((text) => createItem(text));
+
+      items.forEach((item) => todoList.append(item));
+
+      root.append(todoList);
+
+      //rendering
+      body.append(root);
+    </script>
   </body>
 </html>
